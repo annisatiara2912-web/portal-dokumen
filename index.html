@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal Dokumen Perusahaan</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 25px;
+  background: #f5f7fa;
+  color: #222;
+}
+h2 { margin-bottom: 6px; }
+p { color: #666; }
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 24px;
+}
+button {
+  padding: 12px 18px;
+  border: 1px solid #ddd;
+  background: #e8edf4;
+  cursor: pointer;
+  border-radius: 6px 6px 0 0;
+  font-size: 14px;
+}
+button.active {
+  background: #185abd;
+  color: white;
+}
+.viewer {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 0 6px 6px 6px;
+}
+iframe {
+  width: 100%;
+  height: 75vh;
+  border: 0;
+}
+</style>
+</head>
+<body>
+
+<h2>Portal Dokumen Perusahaan</h2>
+<p>Pilih tab untuk membuka dokumen yang diperlukan.</p>
+
+<div class="tabs">
+  <button class="active" data-file="01_Dokumen NIB.pdf">
+   Dokumen NIB
+  </button>
+
+  <button data-file="02_SK Menteri Hukum dan HAM.pdf">
+    SK Menteri Hukum dan HAM
+  </button>
+
+  <button data-file="03_Residence Permit.pdf">
+    Residence Permit
+  </button>
+
+  <button data-file="04_Salinan Akta Pernyataan Keputusan Sirkuler Para Pemegang Saham Perseroan Terbatas PT Igoodco Fashion Makeup.pdf">
+    Salinan Akta Pernyataan Keputusan Sirkuler Para Pemegang Saham Perseroan Terbatas PT Igoodco Fashion Makeup
+  </button>
+
+  <button data-file="05_Perjanjian Penyediaan Jasa.pdf">
+   Perjanjian Penyediaan Jasa
+   </button>
+
+<button data-file="06_Data_Masa_Kerja_Karyawan TERBARU.xlsx">
+Data Masa Kerja Karyawan TERBARU
+ </button>
+</div>
+
+<div class="viewer">
+  <iframe id="pdfViewer" src="pdf/01_Dokumen NIB.pdf"
+          title="Pratinjau dokumen PDF"></iframe>
+</div>
+
+<script>
+const buttons = document.querySelectorAll(".tabs button");
+const viewer = document.getElementById("pdfViewer");
+
+buttons.forEach(button => {
+  button.addEventListener("click", () => {
+    buttons.forEach(item => item.classList.remove("active"));
+    button.classList.add("active");
+    viewer.src = "pdf/" + button.dataset.file;
+  });
+});
+</script>
+
+</body>
+</html>
